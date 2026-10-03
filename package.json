@@ -1,0 +1,53 @@
+{
+  "name": "dsh-calorie-dock",
+  "version": "0.1.0",
+  "description": "DSH 右侧栏的卡路里日记：内置常见食物热量表，选食物+克数自动算 kcal，按餐次记、看当日合计与目标进度；本地存储，Agent 也能读写（calorie_panel 工具）。",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "cordis.patch.yml",
+    "icon.svg"
+  ],
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "dsh-bundle",
+    "deepseek-harness",
+    "calorie",
+    "diet",
+    "food",
+    "sidebar"
+  ],
+  "author": "lemonhall",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lemonhall/dsh-calorie-dock.git"
+  },
+  "homepage": "https://github.com/lemonhall/dsh-calorie-dock#readme",
+  "bugs": {
+    "url": "https://github.com/lemonhall/dsh-calorie-dock/issues"
+  },
+  "meta": {
+    "title": "卡路里日记",
+    "description": "右侧栏一个 tab：按餐次记吃喝，内置食物热量表自动算 kcal，看当日合计与 7 天趋势。"
+  },
+  "icon": "./icon.svg",
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-sidebar-right"
+      ]
+    }
+  }
+}

@@ -1,0 +1,30 @@
+# ============================================================================
+# dsh-calorie-dock —— DSH bundle patch
+# ============================================================================
+# 纯本地，不联网：日记存在 $DSH_HOME/dsh-calorie-dock/state.json。
+# 食物热量表在 lib/foods.js（每 100 克 kcal，数据是常见值，量级对、不用当营养学依据）。
+#
+# 宿主半（lib/index.js）：
+#   GET/POST /dsh-calorie/state  读/写日记
+#   + calorie_panel 工具（Agent 侧：记一餐、看今天、查热量表、设目标）
+# 客户端半（lib/client.js）是右侧栏 tab：今天合计 + 记一餐 + 分餐列表 + 近 7 天。
+#
+# 安装：
+#   plugin_manager install_bundle  target=link:E:\development\dsh-calorie-dock
+# ⚠️ 客户端半边改动要重启应用；新增宿主路由也要重启（实测）。
+# ============================================================================
+
+- insert:
+    - id: dsh-calorie-dock
+      name: dsh-calorie-dock
+      config:
+        # 每日目标（kcal）；只做展示和进度条，不做健康建议
+        dailyGoal: 1800
+        # 面板上"近 N 天"趋势
+        trendDays: 7
+        # 餐次顺序（固定，别乱改，历史数据按它归组）
+        meals:
+          - 早餐
+          - 午餐
+          - 晚餐
+          - 加餐
